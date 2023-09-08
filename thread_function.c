@@ -6,7 +6,7 @@
 /*   By: mkoroglu <mkoroglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 13:22:54 by mkoroglu          #+#    #+#             */
-/*   Updated: 2023/09/06 21:44:53 by mkoroglu         ###   ########.fr       */
+/*   Updated: 2023/09/09 00:51:35 by mkoroglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ static int	ft_print(char *str, t_philo *philo)
 
 static int	ft_eat(t_philo *philo)
 {
-	pthread_mutex_lock(philo->fork_right);
+	pthread_mutex_lock(&philo->fork_right);
 	if (ft_print("took the right fork", philo))
 		return (0);
-	pthread_mutex_lock(philo->fork_left);
+	pthread_mutex_lock(&philo->fork_left);
 	if (ft_print("took the right fork", philo))
 		return (0);
 	philo->last_eat_time = ft_milisec(0);
@@ -36,6 +36,8 @@ static int	ft_eat(t_philo *philo)
 	if (ft_print("is eating", philo))
 		return (0);
 	usleep(philo->data->time_eat * 1000);
+	pthread_mutex_unlock(&philo->fork_right);
+	pthread_mutex_unlock(&philo->fork_left);
 	return (1);
 }
 
@@ -44,7 +46,6 @@ void	*ft_thread_function(void *arg)
 	t_philo *philo;
 
 	philo = arg;
-		getchar();
 	while (1)
 	{
 		if (!ft_eat(philo))

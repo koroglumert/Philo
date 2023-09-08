@@ -6,7 +6,7 @@
 /*   By: mkoroglu <mkoroglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 09:44:13 by mkoroglu          #+#    #+#             */
-/*   Updated: 2023/09/06 21:38:48 by mkoroglu         ###   ########.fr       */
+/*   Updated: 2023/09/09 00:50:02 by mkoroglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ typedef struct s_data
 typedef struct s_philo
 {
 	pthread_t		id_thread;
-	pthread_mutex_t	*fork_left;
-	pthread_mutex_t	*fork_right;
+	pthread_mutex_t	fork_left;
+	pthread_mutex_t	fork_right;
 	int				id_philo;
 	int				eat_count;
 	long			last_eat_time;

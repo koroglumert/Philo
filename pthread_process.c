@@ -6,7 +6,7 @@
 /*   By: mkoroglu <mkoroglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 13:36:59 by mkoroglu          #+#    #+#             */
-/*   Updated: 2023/09/07 01:38:11 by mkoroglu         ###   ########.fr       */
+/*   Updated: 2023/09/09 00:53:39 by mkoroglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,24 +62,27 @@ void	ft_create_join_threads(t_philo *philos)
 	t_philo *tmp;
 	tmp = philos;
 
-	printf("id = %d", philos->id_philo);
-	fflush(stdout);
-	getchar();
 	while (philos)
 	{
-		
-
+		printf("X\n");
+		fflush(stdout);
 		if (philos->id_philo % 2 == 0)
 			usleep(10);
 		pthread_create(&(philos->id_thread), NULL, ft_thread_function, philos);
+		
 		philos = philos->next;
 	}
 	//pthread_create(&(philos->data->id_dead_thread), NULL, ft_dead_thread, tmp);
 	while (tmp)
 	{
+		printf("Z\n");
+		fflush(stdout);
 		pthread_join(tmp->id_thread, NULL);
 		tmp = tmp->next;
 	}
+	printf("M\n");
+		fflush(stdout);
+	
 }
 
 void	ft_destroy_mutex(t_data *data, pthread_mutex_t *forks)
