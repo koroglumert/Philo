@@ -1,8 +1,8 @@
-SRCS = philo.c argument_check.c pthread_process.c thread_function.c utils.c
+SRCS = philo.c argument_check.c pthread_process.c thread.c utils.c
 OBJS = ${SRCS:.c=.o}
 NAME = philo
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror 
 RM = rm -rf
 
 all: ${NAME}
@@ -11,7 +11,7 @@ ${NAME}: ${OBJS}
 	@${CC} ${CFLAGS} ${OBJS} -o ${NAME} 
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -Imlx -c $< -o $@
+	@$(CC) $(CFLAGS) -Imlx -c $< -o $@ 
 
 clean:
 	@${RM} ${OBJS}

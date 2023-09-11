@@ -6,7 +6,7 @@
 /*   By: mkoroglu <mkoroglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 09:44:13 by mkoroglu          #+#    #+#             */
-/*   Updated: 2023/09/09 00:50:02 by mkoroglu         ###   ########.fr       */
+/*   Updated: 2023/09/12 02:27:58 by mkoroglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,28 +28,28 @@ typedef struct s_data
 	int				must_eat;
 	int				is_dead;
 	pthread_t		id_dead_thread;
-	long			start_time;
+	long long		start_time;
 	pthread_mutex_t printing;
 }	t_data;
 
 typedef struct s_philo
 {
 	pthread_t		id_thread;
-	pthread_mutex_t	fork_left;
-	pthread_mutex_t	fork_right;
+	pthread_mutex_t	*fork_left;
+	pthread_mutex_t	*fork_right;
 	int				id_philo;
 	int				eat_count;
-	long			last_eat_time;
+	long long		last_eat_time;
 	struct s_data	*data;
 	struct s_philo	*next;
 	struct s_philo	*first_philo;
 }	t_philo;
 
 int			ft_argument_check(int argc, char **argv, t_data *data);
-int			ft_mutex_init(t_data *data, pthread_mutex_t	*forks);
-void		*ft_thread_function(void *philo);
-void		ft_create_join_threads(t_philo *philos);
+int			ft_mutex_init(t_data *data, pthread_mutex_t	**forks);
 void		ft_destroy_mutex(t_data *data, pthread_mutex_t *forks);
-long		ft_milisec(long first);
+void		*ft_thread(void *philo);
+void		ft_create_join_threads(t_philo *philos);
+long long	ft_milisec(long long first);
 
 #endif

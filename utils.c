@@ -5,19 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkoroglu <mkoroglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/06 14:29:41 by mkoroglu          #+#    #+#             */
-/*   Updated: 2023/09/06 17:29:00 by mkoroglu         ###   ########.fr       */
+/*   Created: 2023/09/12 00:40:11 by mkoroglu          #+#    #+#             */
+/*   Updated: 2023/09/12 00:40:14 by mkoroglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./philo.h"
 
-long	ft_milisec(long first)
+long long	ft_milisec(long long first)
 {
 	struct timeval	tv;
-	long	rtn;
+	long long	rtn;
 
 	gettimeofday(&tv, NULL);
-	rtn = (long)((tv.tv_sec) / 1000);
-	return (rtn - first);
+	rtn = (tv.tv_sec * 1000) + (tv.tv_usec / 1000)  - first;
+	return (rtn);
 }
