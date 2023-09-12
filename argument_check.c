@@ -6,7 +6,7 @@
 /*   By: mkoroglu <mkoroglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 10:00:35 by mkoroglu          #+#    #+#             */
-/*   Updated: 2023/09/08 22:25:56 by mkoroglu         ###   ########.fr       */
+/*   Updated: 2023/09/12 16:20:22 by mkoroglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 static int	ft_atoi(char *str)
 {
-	size_t	i;
+	size_t			i;
 	long long int	number;
 	long long int	negative;
 

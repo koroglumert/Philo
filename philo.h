@@ -6,7 +6,7 @@
 /*   By: mkoroglu <mkoroglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 09:44:13 by mkoroglu          #+#    #+#             */
-/*   Updated: 2023/09/12 02:27:58 by mkoroglu         ###   ########.fr       */
+/*   Updated: 2023/09/12 20:12:03 by mkoroglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_data
 	pthread_t		id_dead_thread;
 	long long		start_time;
 	pthread_mutex_t printing;
+	pthread_mutex_t data_race;
 }	t_data;
 
 typedef struct s_philo
@@ -53,3 +54,9 @@ void		ft_create_join_threads(t_philo *philos);
 long long	ft_milisec(long long first);
 
 #endif
+
+/*
+philo sayısı tekse son filo ve ilk filo
+
+yeme sayisi 1 oalb'l'r bu sorun mu_
+*/

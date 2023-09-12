@@ -6,7 +6,7 @@
 /*   By: mkoroglu <mkoroglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 09:55:31 by mkoroglu          #+#    #+#             */
-/*   Updated: 2023/09/12 02:27:47 by mkoroglu         ###   ########.fr       */
+/*   Updated: 2023/09/12 16:20:43 by mkoroglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 static t_philo	*ft_philo_struct(t_philo *philos, t_data *data)
 {
-	int	i;
-	t_philo		*first_philo;
+	int		i;
+	t_philo	*first_philo;
 
 	i = 1;
 	philos = malloc(sizeof(t_philo));
 	if (!philos)
-			return (0);
+		return (0);
 	first_philo = philos;
 	while (i < data->number_philo)
 	{
@@ -34,7 +34,6 @@ static t_philo	*ft_philo_struct(t_philo *philos, t_data *data)
 	}
 	return (first_philo);
 }
-
 
 static void	ft_initial(t_philo *philos, t_data *data, pthread_mutex_t *forks)
 {
