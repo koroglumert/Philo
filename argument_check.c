@@ -6,13 +6,11 @@
 /*   By: mkoroglu <mkoroglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 10:00:35 by mkoroglu          #+#    #+#             */
-/*   Updated: 2023/09/12 16:20:22 by mkoroglu         ###   ########.fr       */
+/*   Updated: 2023/09/13 15:46:02 by mkoroglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./philo.h"
-
-//MAİNE BAĞLANABİLKİR initial ile yan yana 
 
 static int	ft_atoi(char *str)
 {
@@ -54,7 +52,7 @@ static int	ft_to_integer(int argc, char **argv, t_data *data)
 	if (argc == 6)
 		data->must_eat = ft_atoi(argv[5]);
 	else
-		data->must_eat = 0;
+		data->must_eat = -1;
 	if (data->number_philo < 1 || data->time_die < 1
 		|| data->time_eat < 1 || data->time_sleep < 1
 		|| (argc == 6 && data->must_eat < 1))

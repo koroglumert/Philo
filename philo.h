@@ -6,7 +6,7 @@
 /*   By: mkoroglu <mkoroglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 09:44:13 by mkoroglu          #+#    #+#             */
-/*   Updated: 2023/09/12 20:12:03 by mkoroglu         ###   ########.fr       */
+/*   Updated: 2023/09/13 16:15:17 by mkoroglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ typedef struct s_philo
 	long long		last_eat_time;
 	struct s_data	*data;
 	struct s_philo	*next;
-	struct s_philo	*first_philo;
 }	t_philo;
 
 int			ft_argument_check(int argc, char **argv, t_data *data);

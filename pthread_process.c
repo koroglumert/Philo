@@ -6,7 +6,7 @@
 /*   By: mkoroglu <mkoroglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 13:36:59 by mkoroglu          #+#    #+#             */
-/*   Updated: 2023/09/12 21:18:52 by mkoroglu         ###   ########.fr       */
+/*   Updated: 2023/09/13 16:09:13 by mkoroglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,17 @@ void	ft_destroy_mutex(t_data *data, pthread_mutex_t *forks)
 
 static int	ft_eat_count_control(t_philo *philos)
 {
+	t_philo *tmp;
+
+	tmp = philos;
 	pthread_mutex_lock(&philos->data->data_race);
 	while (philos)
 	{
 		if (philos->eat_count != philos->data->must_eat)
-		{
-			pthread_mutex_unlock(&philos->data->data_race);
-			return (0);
-		}
+			return (pthread_mutex_unlock(&philos->data->data_race));
 		philos = philos->next;
 	}
-	pthread_mutex_unlock(&philos->data->data_race);
+	pthread_mutex_unlock(&tmp->data->data_race);
 	return (1);
 }
 
@@ -50,7 +50,7 @@ static void	*ft_thread_control(t_philo *philos)
 	while (1)
 	{
 		pthread_mutex_lock(&philos->data->data_race);
-		if (philos->eat_count != philos->data->must_eat
+		if ((philos->data->must_eat == -1 || philos->eat_count != philos->data->must_eat)
 			&& ft_milisec(philos->last_eat_time) > philos->data->time_die)
 		{
 			philos->data->is_dead = 1;
@@ -66,9 +66,7 @@ static void	*ft_thread_control(t_philo *philos)
 		if (!philos && tmp->data->must_eat && ft_eat_count_control(tmp))
 			return (0);
 		if (!philos)
-		{
 			philos = tmp;
-		}
 		usleep(100);
 	}
 	return (0);

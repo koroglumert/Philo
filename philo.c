@@ -6,7 +6,7 @@
 /*   By: mkoroglu <mkoroglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 09:55:31 by mkoroglu          #+#    #+#             */
-/*   Updated: 2023/09/12 16:20:43 by mkoroglu         ###   ########.fr       */
+/*   Updated: 2023/09/13 15:57:49 by mkoroglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	ft_initial(t_philo *philos, t_data *data, pthread_mutex_t *forks)
 	while (i < data->number_philo)
 	{
 		philos->id_philo = i + 1;
-		philos->last_eat_time = ft_milisec(0); //LAST EAT İLK BAŞLATIŞ SIFIR SORUN OLABİLİR.
+		philos->last_eat_time = ft_milisec(0);
 		philos->eat_count = 0;
 		philos->data = data;
 		philos->fork_right = &forks[i];
@@ -51,8 +51,6 @@ static void	ft_initial(t_philo *philos, t_data *data, pthread_mutex_t *forks)
 			philos->fork_left = &forks[i - 1];
 		else if (data->number_philo != 1)
 			philos->fork_left = &forks[data->number_philo - 1];
-		else
-			philos->fork_left = &forks[i];
 		philos = philos->next;
 		i++;
 	}
