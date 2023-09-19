@@ -6,18 +6,11 @@
 /*   By: mkoroglu <mkoroglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 13:22:54 by mkoroglu          #+#    #+#             */
-/*   Updated: 2023/09/13 16:12:44 by mkoroglu         ###   ########.fr       */
+/*   Updated: 2023/09/19 13:25:17 by mkoroglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./philo.h"
-
-static int	ft_fork_mutex_unlock(t_philo *philo)
-{
-	pthread_mutex_unlock(philo->fork_right);
-	pthread_mutex_unlock(philo->fork_left);
-	return (0);
-}
 
 static int	ft_is_died(t_philo *philo)
 {
@@ -55,6 +48,11 @@ static int	ft_print(char *str, t_philo *philo)
 		printf("%lld %d %s\n", ft_milisec(philo->data->start_time),
 			philo->id_philo, str);
 	}
+	else
+	{
+		pthread_mutex_unlock(&philo->data->printing);
+		return (0);
+	}
 	pthread_mutex_unlock(&philo->data->printing);
 	return (1);
 }
@@ -64,9 +62,7 @@ static int	ft_eating(t_philo *philo)
 	if (ft_is_died(philo))
 		return (0);
 	pthread_mutex_lock(philo->fork_right);
-	if (!ft_print("has taken a fork", philo))
-		return (pthread_mutex_unlock(philo->fork_right));
-	if (ft_is_died(philo) || philo->data->number_philo == 1)
+	if (philo->data->number_philo == 1 || !ft_print("has taken a fork", philo))
 		return (pthread_mutex_unlock(philo->fork_right));
 	pthread_mutex_lock(philo->fork_left);
 	pthread_mutex_lock(&philo->data->data_race);

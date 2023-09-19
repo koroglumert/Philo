@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkoroglu <mkoroglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 09:44:13 by mkoroglu          #+#    #+#             */
-/*   Updated: 2023/09/13 16:15:17 by mkoroglu         ###   ########.fr       */
+/*   Updated: 2023/09/19 16:53:31 by mkoroglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <pthread.h>
 # include <sys/time.h>
 # include <unistd.h>
+# include <semaphore.h>
 
 typedef struct s_data
 {
@@ -29,6 +30,7 @@ typedef struct s_data
 	int				is_dead;
 	pthread_t		id_dead_thread;
 	long long		start_time;
+	sem_t 			*semaphore;
 	pthread_mutex_t printing;
 	pthread_mutex_t data_race;
 }	t_data;
@@ -46,16 +48,11 @@ typedef struct s_philo
 }	t_philo;
 
 int			ft_argument_check(int argc, char **argv, t_data *data);
-int			ft_mutex_init(t_data *data, pthread_mutex_t	**forks);
-void		ft_destroy_mutex(t_data *data, pthread_mutex_t *forks);
-void		*ft_thread(void *philo);
+int			ft_init_mutex_semaphore(t_data *data);
 void		ft_create_join_threads(t_philo *philos);
+void		*ft_thread(void *philo);
 long long	ft_milisec(long long first);
+int			ft_fork_semaphore_post(t_data *data);
+void		ft_destroy_mutex_semaphore(t_data *data);
 
 #endif
-
-/*
-philo sayısı tekse son filo ve ilk filo
-
-yeme sayisi 1 oalb'l'r bu sorun mu_
-*/

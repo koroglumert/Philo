@@ -1,11 +1,13 @@
-SRCS = philo.c argument_check.c pthread_process.c thread.c utils.c
+SRCS = philo_bonus.c argument_check_bonus.c pthread_process_bonus.c thread_bonus.c
 OBJS = ${SRCS:.c=.o}
-NAME = philo
+NAME = philo_bonus
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
 all: ${NAME}
+
+bonus: ${NAME}
 
 ${NAME}: ${OBJS}
 	@${CC} ${CFLAGS} ${OBJS} -o ${NAME} 

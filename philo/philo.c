@@ -6,11 +6,28 @@
 /*   By: mkoroglu <mkoroglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 09:55:31 by mkoroglu          #+#    #+#             */
-/*   Updated: 2023/09/13 15:57:49 by mkoroglu         ###   ########.fr       */
+/*   Updated: 2023/09/19 02:19:09 by mkoroglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./philo.h"
+
+int	ft_fork_mutex_unlock(t_philo *philo)
+{
+	pthread_mutex_unlock(philo->fork_right);
+	pthread_mutex_unlock(philo->fork_left);
+	return (0);
+}
+
+long long	ft_milisec(long long first)
+{
+	struct timeval	tv;
+	long long		rtn;
+
+	gettimeofday(&tv, NULL);
+	rtn = (tv.tv_sec * 1000) + (tv.tv_usec / 1000)  - first;
+	return (rtn);
+}
 
 static t_philo	*ft_philo_struct(t_philo *philos, t_data *data)
 {
